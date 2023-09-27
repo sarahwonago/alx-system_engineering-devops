@@ -1,2 +1,2 @@
 #!/bin/bash
-ls -Apm | tr -d '\n'
+ls -Ap | awk '{ORS = (/\/$/ ? ", " : RS)} 1; END {if (NR) print ""}'
