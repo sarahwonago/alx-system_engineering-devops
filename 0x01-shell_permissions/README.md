@@ -50,7 +50,7 @@ This repository contains several Bash scripts, each designed to perform specific
 
 **Description**: This script creates a directory named "my_dir" with permissions 751 in the working directory.
 
-## change_group
+## 13-change_group
 
 **Description**: This script changes the group owner of the file "hello" to "school."
 
