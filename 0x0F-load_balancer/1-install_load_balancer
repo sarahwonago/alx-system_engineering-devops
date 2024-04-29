@@ -27,7 +27,7 @@ defaults
     timeout client  10000
     timeout server  10000
 listen hbnb
-    bind dev.shaaleh.tech:80
+    bind shaaleh.tech:80
     mode http
     option http-keep-alive
     stats enable
