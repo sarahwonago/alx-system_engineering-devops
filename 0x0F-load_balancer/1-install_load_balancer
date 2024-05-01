@@ -2,6 +2,11 @@
 # Installs HAProxy version 1.8 with the following configurations:
 #+    Enables management via the init script.
 #+    Distributes requests using a round-robin algorithm.
+#+    Configures servers with correct hostnames: [STUDENT_ID]-web-01 and [STUDENT_ID]-web-02.
+
+STUDENT_ID="531439" 
+WEB_01_IP="18.204.7.96" 
+WEB_02_IP="35.174.211.88"  
 
 sudo apt-get -y update
 sudo apt-get -y upgrade
@@ -35,8 +40,8 @@ listen hbnb
     balance roundrobin
     option httpclose
     option forwardfor
-    server 531439-web-01 18.204.7.96 check
-    server 531439-web-02 35.174.211.88 check
+    server ${STUDENT_ID}-web-01 ${WEB_01_IP} check
+    server ${STUDENT_ID}-web-02 ${WEB_02_IP} check
 " >> /etc/haproxy/haproxy.cfg
 
 sudo service haproxy start
