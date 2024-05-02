@@ -40,8 +40,8 @@ listen hbnb
     balance roundrobin
     option httpclose
     option forwardfor
-    server ${STUDENT_ID}-web-01 ${WEB_01_IP} check
-    server ${STUDENT_ID}-web-02 ${WEB_02_IP} check
+    server ${STUDENT_ID}-web-01 ${WEB_01_IP}:80 check
+    server ${STUDENT_ID}-web-02 ${WEB_02_IP}:80 check
 " >> /etc/haproxy/haproxy.cfg
 
 sudo service haproxy start
