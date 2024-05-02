@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Usage: ./1-world_wide_web <domain> <subdomain>
+# Display information about subdomains.
+
+func () {
+    if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+        echo "Usage: $0 <domain> [<subdomain>]"
+        exit 1
+    fi
+
+    domain="$1"
+    subdomain="$2"
+
+    if [ -n "$subdomain" ]; then
+        dig_output=$(dig "$subdomain.$domain" +short)
+        if [ -n "$dig_output" ]; then
+            record_type=$(dig "$subdomain.$domain" +short | awk 'NR==1{print $1}')
+            destination=$(dig "$subdomain.$domain" +short)
+            echo "The subdomain $subdomain is a $record_type record and points to $destination"
+        else
+            echo "No records found for subdomain $subdomain"
+        fi
+    else
+        func "$domain" www
+        func "$domain" lb-01
+        func "$domain" web-01
+        func "$domain" web-02
+    fi
+}
+
+func "$@"
+
